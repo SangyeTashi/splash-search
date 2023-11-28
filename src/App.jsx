@@ -2,15 +2,17 @@ import { useState } from 'react';
 import './App.css';
 import Gallery from './components/Gallery';
 import Hero from './components/Hero';
+import useFetch from './hooks/useFetch';
+import { RecoilRoot } from 'recoil';
 
 function App() {
-    const [isSearch, setIsSearch] = useState(false);
-    const [query, setQuery] = useState(null);
     return (
-        <>
-            <Hero setIsSearch={setIsSearch} setQuery={setQuery} />
-            <main>{isSearch ? <SearchGallery /> : <Gallery />}</main>
-        </>
+        <RecoilRoot>
+            <Hero />
+            <main>
+                <Gallery />
+            </main>
+        </RecoilRoot>
     );
 }
 

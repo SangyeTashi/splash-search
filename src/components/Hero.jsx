@@ -1,47 +1,31 @@
 import React from 'react';
-import useFetch from '../hooks/useFetch';
 import SearchInput from './SearchInput';
+import useFetch from '../hooks/useFetch';
 
-function Hero({ setIsSearch, setQuery }) {
-    const [image, loading, error] = useFetch('photos/', {
-        id: 'Dwu85P9SOIk',
-    });
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        setQuery();
-        setIsSearch(true);
-    };
-
+function Hero() {
+    const [heroImage, heroError, heroLoading] = useFetch(
+        'photos/26b36df91f4f',
+        {}
+    );
     return (
-        <div
-            className={`h-96 flex items-center justify-center overflow-hidden relative bg-slate-800
-            `}
-        >
-            <div className="absolute bottom-3 right-4 text-slate-500">
-                {error && `bg-image : ${error.message}`}
-                {loading && 'image loading'}
-            </div>
-            {image && (
-                <>
-                    <img
-                        className="w-full absolute -z-10"
-                        src={image.urls.regular}
-                        alt={image.description}
-                        loading="lazy"
-                    />
-                </>
+        <>
+            {heroError && <p>{heroError.message}</p>}
+            {heroImage && (
+                <div className="h-96 relative flex items-center justify-center bg-cover bg-no-repeat overflow-hidden">
+                    <div className="flex flex-col items-center">
+                        <h2 className="mb-5 font-bold text-3xl text-gray-500">
+                            Download High Resolution Images by creators
+                        </h2>
+                        <SearchInput />
+                        <img
+                            className="absolute top-0 -z-10"
+                            src={heroImage.urls.regular}
+                            alt=""
+                        />
+                    </div>
+                </div>
             )}
-
-            <div className="flex flex-col items-center">
-                <h2 className="mb-5 text-slate-100 font-bold text-3xl">
-                    Download High Resolution Images by creators
-                </h2>
-                <form action="" onSubmit={handleSubmit}>
-                    <SearchInput />
-                </form>
-            </div>
-        </div>
+        </>
     );
 }
 

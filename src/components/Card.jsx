@@ -7,7 +7,7 @@ function Card({ imageData }) {
         likes,
         user: { profile_image, name, username },
     } = imageData;
-    console.log(imageData);
+    // console.log(imageData);
     return (
         <div className="rounded-xl border border-gray-300  overflow-hidden mb-4">
             <img src={urls.small} className="w-full" alt={alt_description} />

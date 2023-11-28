@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 function useFetch(url, params) {
     const [data, setData] = useState(null);
@@ -22,7 +22,7 @@ function useFetch(url, params) {
                 setError(err);
                 setLoading(false);
             });
-    }, [url]);
+    }, [url, params.query]);
 
     return [data, loading, error];
 }
