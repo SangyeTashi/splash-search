@@ -5,12 +5,24 @@ function Card({ imageData }) {
         urls,
         alt_description,
         likes,
+        height,
+        width,
         user: { profile_image, name, username },
     } = imageData;
-    // console.log(imageData);
+
     return (
         <div className="rounded-xl border border-gray-300  overflow-hidden mb-4">
-            <img src={urls.small} className="w-full" alt={alt_description} />
+            <div
+                className="w-full bg-slate-400"
+                style={{ aspectRatio: width / height }}
+            >
+                <img
+                    src={urls.small}
+                    className="w-full"
+                    alt={alt_description}
+                    loading="lazy"
+                />
+            </div>
             <div className="flex px-4 py-2 text-sm items-center">
                 <img
                     className="rounded-full w-12 h-12 mr-2"
@@ -18,6 +30,7 @@ function Card({ imageData }) {
                     alt=""
                     loading="lazy"
                 />
+
                 <div className="flex flex-col items-start">
                     <div className="font-bold text-gray-800">{name}</div>
                     <div className="text-gray-700 italic">@{username}</div>

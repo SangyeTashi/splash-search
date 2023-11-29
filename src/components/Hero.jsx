@@ -1,28 +1,33 @@
 import React from 'react';
 import SearchInput from './SearchInput';
 import useFetch from '../hooks/useFetch';
+import { useRecoilValue } from 'recoil';
+import { isSearchRecoil } from '../recoilState';
 
 function Hero() {
-    const [heroImage, heroError, heroLoading] = useFetch(
-        'photos/26b36df91f4f',
-        {}
-    );
+    const isSearch = useRecoilValue(isSearchRecoil);
+    const [heroImage, heroImageError, heroImageLoading] =
+        useFetch('photos/2p1U8zi7cwY');
     return (
         <>
-            {heroError && <p>{heroError.message}</p>}
+            {heroImageError && <p>{heroImageError.message}</p>}
             {heroImage && (
-                <div className="h-96 relative flex items-center justify-center bg-cover bg-no-repeat overflow-hidden">
-                    <div className="flex flex-col items-center">
-                        <h2 className="mb-5 font-bold text-3xl text-gray-500">
+                <div
+                    style={{
+                        backgroundImage: `url(${
+                            !isSearch ? heroImage.urls.full : ''
+                        })`,
+                    }}
+                    className={`${
+                        isSearch ? 'h-20' : 'h-96'
+                    } flex items-center flex-col justify-center overflow-hidden bg-cover bg-center transition-all duration-75`}
+                >
+                    {!isSearch && (
+                        <h2 className="mb-5 font-bold text-center text-3xl text-gray-100">
                             Download High Resolution Images by creators
                         </h2>
-                        <SearchInput />
-                        <img
-                            className="absolute top-0 -z-10"
-                            src={heroImage.urls.regular}
-                            alt=""
-                        />
-                    </div>
+                    )}
+                    <SearchInput />
                 </div>
             )}
         </>

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isSearchRecoil, searchQueryRecoil } from '../recoilState';
 
 function SearchInput() {
@@ -9,24 +9,35 @@ function SearchInput() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setQuery(inputRef.current.value);
-        setIsSearch(true);
+        if (inputRef.current.value !== '') {
+            setQuery(inputRef.current.value);
+            inputRef.current.value = '';
+            inputRef.current.blur();
+            setIsSearch(true);
+        }
     };
 
     return (
-        <form className="relative" onSubmit={handleSubmit}>
+        <form
+            className="relative flex items-stretch border-l border-y border-gray-300 rounded-lg"
+            onSubmit={handleSubmit}
+        >
             <input
-                className="focus:outline-none rounded-lg pl-14 px-8 py-3 w-[35rem]"
+                className="focus:outline-none rounded-s-lg pl-14 px-8 py-3 "
                 placeholder="Search high resolution Images, categories, wallpapers"
                 type="text"
                 ref={inputRef}
             />
             <img
-                className="w-5 absolute left-7 top-[14px] opacity-75"
+                className="w-5 absolute left-5 top-[14px] opacity-75"
                 src="/src/assets/loupe.png"
                 alt="search icon"
             />
-            <input type="submit" value="search" />
+            <input
+                type="submit"
+                className="bg-gray-300 text-gray-700 rounded-e-lg px-3 cursor-pointer"
+                value="Search"
+            />
         </form>
     );
 }
