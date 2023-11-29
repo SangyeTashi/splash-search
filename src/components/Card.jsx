@@ -14,9 +14,13 @@ function Card({ imageData }) {
     return (
         <div className="rounded-xl border border-gray-300  overflow-hidden mb-4">
             <div
-                className="w-full bg-slate-400"
+                className="w-full relative bg-slate-400 "
                 style={{ aspectRatio: width / height }}
             >
+                <img
+                    src="/src/assets/download-circular-button.png"
+                    className="absolute right-5 top-3 w-7 h-7 "
+                />
                 <img
                     src={urls.small}
                     className="w-full"
@@ -24,6 +28,7 @@ function Card({ imageData }) {
                     loading="lazy"
                 />
             </div>
+
             <div className="flex px-4 py-2 text-sm items-center">
                 <img
                     className="rounded-full w-12 h-12 mr-2"
@@ -31,7 +36,6 @@ function Card({ imageData }) {
                     alt=""
                     loading="lazy"
                 />
-
                 <div className="flex flex-col items-start">
                     <div className="font-bold text-gray-800">{name}</div>
                     <div className="text-gray-700 italic">@{username}</div>
