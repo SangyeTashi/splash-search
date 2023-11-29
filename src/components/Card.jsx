@@ -3,6 +3,7 @@ import React from 'react';
 function Card({ imageData }) {
     const {
         urls,
+        links,
         alt_description,
         likes,
         height,
