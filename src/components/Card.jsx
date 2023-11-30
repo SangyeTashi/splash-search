@@ -14,13 +14,19 @@ function Card({ imageData }) {
     return (
         <div className="rounded-xl border border-gray-300  overflow-hidden mb-4">
             <div
-                className="w-full relative bg-slate-400 "
+                className="w-full relative bg-slate-400 group"
                 style={{ aspectRatio: width / height }}
             >
-                <img
-                    src="/src/assets/download-circular-button.png"
-                    className="absolute right-5 top-3 w-7 h-7 "
-                />
+                <a
+                    href={links.download}
+                    target="_blank"
+                    className="hidden group-hover:block"
+                >
+                    <img
+                        src="/src/assets/download-circular-button.png"
+                        className="absolute right-5 top-3 w-9 h-9 rounded-full bg-white/60 backdrop-blur-lg p-1"
+                    />
+                </a>
                 <img
                     src={urls.small}
                     className="w-full"

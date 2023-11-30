@@ -23,7 +23,7 @@ function Hero() {
                     } flex items-center flex-col justify-center overflow-hidden bg-cover bg-center transition-all duration-75`}
                 >
                     {!isSearch && (
-                        <h2 className="mb-5 font-bold text-center text-3xl text-gray-100">
+                        <h2 className="mb-5 font-bold text-center text-3xl text-gray-100 px-4">
                             Download High Resolution Images by creators
                         </h2>
                     )}
