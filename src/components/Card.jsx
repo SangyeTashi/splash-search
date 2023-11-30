@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function Card({ imageData }) {
     const {
@@ -27,8 +28,8 @@ function Card({ imageData }) {
                         className="absolute right-5 top-3 w-9 h-9 rounded-full bg-white/60 backdrop-blur-lg p-1"
                     />
                 </a>
-                <img
-                    src={urls.small}
+                <LazyLoadImage
+                    src={urls.regular}
                     className="w-full"
                     alt={alt_description}
                     loading="lazy"
@@ -36,7 +37,7 @@ function Card({ imageData }) {
             </div>
 
             <div className="flex px-4 py-2 text-sm items-center">
-                <img
+                <LazyLoadImage
                     className="rounded-full w-12 h-12 mr-2"
                     src={profile_image.medium}
                     alt=""
