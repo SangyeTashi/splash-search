@@ -18,7 +18,7 @@ function SearchInput() {
     };
     return (
         <form
-            className="relative flex items-stretch border-l border-y border-gray-300 rounded-lg"
+            className="relative flex  border-l border-y border-gray-300 rounded-lg"
             onSubmit={handleSubmit}
         >
             <input

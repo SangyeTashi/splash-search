@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import useFetch from '../hooks/useFetch';
 import Loading from './Loading';
+import Error from './Error';
 import Card from './Card';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { isSearchRecoil, searchQueryRecoil } from '../recoilState';
@@ -18,15 +19,11 @@ function SearchGallery({ searchQuery }) {
         setIsSearch(false);
         resetQuery();
     }
-
-    useEffect(() => {
-        console.log(images);
-    }, []);
     return (
         <>
-            {error && <p>{error.message}</p>}
             {loading && <Loading />}
-            {!loading && (
+            {!loading && error && <Error error={error} />}
+            {!error && !loading && images && (
                 <div className="flex flex-col items-center">
                     <div className="bg-gray-200 rounded-full items-center px-4 py-1 pr-1 flex">
                         {images.results.length !== 0 ? (
@@ -49,7 +46,7 @@ function SearchGallery({ searchQuery }) {
                             />
                         </button>
                     </div>
-                    <div className="columns-1 p-10   md:columns-2 lg:columns-3 xl:columns-4 gap-4 max-w-[1600px] mx-auto">
+                    <div className="columns-1 p-4 md:columns-2 lg:columns-3 xl:columns-4 gap-4 w-full  max-w-[1600px] mx-auto">
                         {images.results.map((image) => {
                             return <Card imageData={image} key={image.id} />;
                         })}
