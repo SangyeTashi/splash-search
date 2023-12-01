@@ -16,7 +16,6 @@ function SearchInput() {
             setIsSearch(true);
         }
     };
-
     return (
         <form
             className="relative flex items-stretch border-l border-y border-gray-300 rounded-lg"

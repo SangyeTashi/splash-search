@@ -5,7 +5,10 @@ function useFetch(url, params = {}) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const baseUrl = 'https://api.unsplash.com/';
+
     useEffect(() => {
+        const controller = new AbortController();
+
         setLoading(true);
         axios
             .get(`${baseUrl}${url}`, {
@@ -13,15 +16,23 @@ function useFetch(url, params = {}) {
                     Authorization: `Client-ID ${import.meta.env.VITE_API_KEY}`,
                 },
                 params: params,
+                signal: controller.signal,
             })
             .then((res) => {
                 setData(res.data);
-                setLoading(false);
             })
             .catch((err) => {
-                setError(err);
+                if (!controller.signal.aborted) {
+                    setError(err);
+                }
+            })
+            .finally(() => {
                 setLoading(false);
             });
+
+        return () => {
+            controller.abort();
+        };
     }, [url, params.query]);
 
     return [data, loading, error];

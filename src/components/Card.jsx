@@ -1,5 +1,6 @@
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { MdOutlineFileDownload } from 'react-icons/md';
 
 function Card({ imageData }) {
     const {
@@ -8,6 +9,7 @@ function Card({ imageData }) {
         alt_description,
         likes,
         height,
+        color,
         width,
         user: { profile_image, name, username },
     } = imageData;
@@ -15,17 +17,16 @@ function Card({ imageData }) {
     return (
         <div className="rounded-xl border border-gray-300  overflow-hidden mb-4">
             <div
-                className="w-full relative bg-slate-400 group"
-                style={{ aspectRatio: width / height }}
+                className={` w-full relative group`}
+                style={{ aspectRatio: width / height, backgroundColor: color }}
             >
                 <a
                     href={links.download}
                     target="_blank"
                     className="hidden group-hover:block"
                 >
-                    <img
-                        src="/src/assets/download-circular-button.png"
-                        className="absolute right-5 top-3 w-9 h-9 rounded-full bg-white/60 backdrop-blur-lg p-1"
+                    <MdOutlineFileDownload
+                        className={`absolute right-5 top-3 w-9 h-9 rounded-md bg-white/70 backdrop-blur-lg p-1`}
                     />
                 </a>
                 <LazyLoadImage
@@ -36,7 +37,7 @@ function Card({ imageData }) {
                 />
             </div>
 
-            <div className="flex px-4 py-2 text-sm items-center">
+            <div className={`flex px-4 py-2 text-sm items-center `}>
                 <LazyLoadImage
                     className="rounded-full w-12 h-12 mr-2"
                     src={profile_image.medium}

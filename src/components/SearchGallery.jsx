@@ -9,18 +9,24 @@ function SearchGallery({ searchQuery }) {
         query: searchQuery,
         per_page: 30,
     });
+
     const setIsSearch = useSetRecoilState(isSearchRecoil);
     const resetQuery = useResetRecoilState(searchQueryRecoil);
+
     function handleClick(e) {
         e.preventDefault();
         setIsSearch(false);
         resetQuery();
     }
+
+    useEffect(() => {
+        console.log(images);
+    }, []);
     return (
         <>
             {error && <p>{error.message}</p>}
             {loading && <Loading />}
-            {!loading && images && (
+            {!loading && (
                 <div className="flex flex-col items-center">
                     <div className="bg-gray-200 rounded-full items-center px-4 py-1 pr-1 flex">
                         {images.results.length !== 0 ? (

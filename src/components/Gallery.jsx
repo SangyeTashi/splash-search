@@ -6,15 +6,15 @@ import SearchGallery from './SearchGallery';
 function Gallery() {
     const searchQuery = useRecoilValue(searchQueryRecoil);
     const isSearch = useRecoilValue(isSearchRecoil);
-    return (
-        <>
-            {isSearch ? (
-                <SearchGallery searchQuery={searchQuery} />
-            ) : (
-                <HomeFeed />
-            )}
-        </>
-    );
+
+    function switchGallery() {
+        if (isSearch) {
+            return <SearchGallery searchQuery={searchQuery} />;
+        }
+        return <HomeFeed />;
+    }
+
+    return switchGallery();
 }
 
 export default Gallery;
