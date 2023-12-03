@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isSearchRecoil, searchQueryRecoil } from '../recoilState';
-
+import searchIcon from '../assets/loupe.png';
 function SearchInput() {
     const inputRef = useRef();
     const setIsSearch = useSetRecoilState(isSearchRecoil);
@@ -29,7 +29,7 @@ function SearchInput() {
             />
             <img
                 className="w-5 absolute left-5 top-[14px] opacity-75"
-                src="/src/assets/loupe.png"
+                src={searchIcon}
                 alt="search icon"
             />
             <input

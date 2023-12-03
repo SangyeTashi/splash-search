@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { MdOutlineFileDownload } from 'react-icons/md';
-import { Blurhash } from 'react-blurhash';
-
+import likeIcon from '../assets/like.png';
 function Card({ imageData }) {
     const [imageLoaded, setImageLoaded] = useState(false);
     const {
@@ -69,7 +68,7 @@ function Card({ imageData }) {
                 </div>
                 <div className="ml-auto flex items-center">
                     <img
-                        src="src/assets/like.png"
+                        src={likeIcon}
                         className="w-4 h-4 mr-1 mb-[2px]"
                         alt=""
                     />
