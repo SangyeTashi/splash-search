@@ -13,9 +13,8 @@ function Hero() {
             {heroImage && (
                 <div
                     style={{
-                        backgroundImage: `url(${
-                            !isSearch && heroImage.urls.full
-                        })`,
+                        backgroundImage:
+                            !isSearch && `url(${heroImage.urls.full})`,
                         backgroundColor: !isSearch && heroImage.color,
                     }}
                     className={`${

@@ -9,8 +9,8 @@ function HomeFeed() {
         <>
             {loading && <Loading />}
             {error && <Error error={error} />}
-            {images && (
-                <div className="columns-1 p-10 md:columns-2 lg:columns-3 xl:columns-4 gap-4 max-w-[1600px] mx-auto">
+            {!loading && images && (
+                <div className="columns-1 p-4 md:columns-2 lg:columns-3 xl:columns-4 gap-4 max-w-[1600px] mx-auto">
                     {images.map((image) => {
                         return <Card imageData={image} key={image.id} />;
                     })}
