@@ -43,7 +43,7 @@ function SearchGallery({ searchQuery }) {
                             <img src={close} className="w-3 h-3" alt="close" />
                         </button>
                     </div>
-                    <div className="columns-1 p-4 md:columns-2 lg:columns-3 xl:columns-4 gap-4 max-w-[1600px] mx-auto">
+                    <div className="columns-1 p-4 w-full md:columns-2 lg:columns-3 xl:columns-4 gap-4 max-w-[1600px] mx-auto">
                         {images.results.map((image) => {
                             return <Card imageData={image} key={image.id} />;
                         })}

@@ -34,7 +34,7 @@ function SearchInput() {
             />
             <input
                 type="submit"
-                className="bg-gray-300 text-gray-700 rounded-e-lg px-3 cursor-pointer"
+                className="bg-gray-300 text-gray-800 rounded-e-lg px-3 cursor-pointer"
                 value="Search"
             />
         </form>
