@@ -1,11 +1,11 @@
 import React from 'react';
-import { BiError } from 'react-icons/bi';
+import { MdErrorOutline } from 'react-icons/md';
 
 function Error({ error }) {
     return (
         <div className="h-[200px] flex items-center flex-col justify-center">
-            <BiError className="text-3xl" />
-            <h2>Error:</h2>
+            <MdErrorOutline width={50} height={50} />
+            <h2>Error</h2>
             <p>{error.message}</p>
         </div>
     );
