@@ -3,7 +3,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { MdOutlineFileDownload } from 'react-icons/md';
 import likeIcon from '../assets/like.png';
 function Card({ imageData }) {
-    const [imageLoaded, setImageLoaded] = useState(false);
     const {
         id,
         urls,
@@ -16,13 +15,6 @@ function Card({ imageData }) {
         user: { profile_image, name, username },
     } = imageData;
 
-    useEffect(() => {
-        const img = new Image();
-        img.onload = () => {
-            setImageLoaded(true);
-        };
-        img.src = urls.regular;
-    }, [id]);
     return (
         <div className="rounded-xl border border-gray-300  overflow-hidden mb-4">
             <div
@@ -38,21 +30,12 @@ function Card({ imageData }) {
                         className={`absolute right-5 top-3 w-9 h-9 rounded-md bg-white/70 backdrop-blur-lg p-1`}
                     />
                 </a>
-                {imageLoaded ? (
-                    <LazyLoadImage
-                        src={urls.regular}
-                        className="w-full"
-                        alt={alt_description}
-                        loading="lazy"
-                    />
-                ) : (
-                    <LazyLoadImage
-                        src={urls.thumb}
-                        className="w-full blur-sm"
-                        alt={alt_description}
-                        loading="lazy"
-                    />
-                )}
+                <LazyLoadImage
+                    src={urls.small}
+                    className="w-full"
+                    alt={alt_description}
+                    loading="lazy"
+                />
             </div>
 
             <div className={`flex px-4 py-2 text-sm items-center `}>
