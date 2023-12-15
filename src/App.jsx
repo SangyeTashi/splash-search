@@ -1,16 +1,24 @@
 import './App.css';
 import Gallery from './components/Gallery';
 import Hero from './components/Hero';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilValue } from 'recoil';
+import { modalStateRecoil } from './recoilState';
 
 function App() {
+    const modalVisible = useRecoilValue(modalStateRecoil);
+
     return (
-        <RecoilRoot>
+        <div
+            className={`${
+                modalVisible ? 'overflow-hidden' : 'overflow-auto'
+            } h-screen`}
+            style={{ scrollbarGutter: 'stable' }}
+        >
             <Hero />
             <main>
                 <Gallery />
             </main>
-        </RecoilRoot>
+        </div>
     );
 }
 

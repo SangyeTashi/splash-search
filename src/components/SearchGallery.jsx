@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useFetch from '../hooks/useFetch';
 import Loading from './Loading';
 import Error from './Error';
-import Card from './Card';
+import Card from './card/Card';
 import close from '../assets/close.png';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { isSearchRecoil, searchQueryRecoil } from '../recoilState';
@@ -44,11 +44,11 @@ function SearchGallery({ searchQuery }) {
                             <img src={close} className="w-3 h-3" alt="close" />
                         </button>
                     </div>
-                    <div className="columns-1 p-4 w-full md:columns-2 lg:columns-3 xl:columns-4 gap-4 max-w-[1600px] mx-auto">
+                    <>
                         {images.results.map((image) => {
                             return <Card imageData={image} key={image.id} />;
                         })}
-                    </div>
+                    </>
                 </div>
             )}
         </>

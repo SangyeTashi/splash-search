@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { MdOutlineFileDownload } from 'react-icons/md';
-import likeIcon from '../assets/like.png';
+import likeIcon from '../../assets/like.png';
+import { useSetRecoilState } from 'recoil';
+import { modalContentRecoil, modalStateRecoil } from '../../recoilState';
 function Card({ imageData }) {
     const {
         urls,
@@ -14,11 +15,18 @@ function Card({ imageData }) {
         user: { profile_image, name, username },
     } = imageData;
 
+    const setModalState = useSetRecoilState(modalStateRecoil);
+    const setModalContent = useSetRecoilState(modalContentRecoil);
+
     return (
         <div className="rounded-xl border border-gray-300  overflow-hidden mb-4">
             <div
-                className={`w-full relative group overflow-hidden`}
+                className={`w-full relative group overflow-hidden cursor-pointer`}
                 style={{ aspectRatio: width / height, backgroundColor: color }}
+                onClick={() => {
+                    setModalState(true);
+                    setModalContent(imageData);
+                }}
             >
                 <a
                     href={links.download}
