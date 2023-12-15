@@ -4,7 +4,6 @@ import { MdOutlineFileDownload } from 'react-icons/md';
 import likeIcon from '../assets/like.png';
 function Card({ imageData }) {
     const {
-        id,
         urls,
         links,
         alt_description,

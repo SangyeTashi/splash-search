@@ -4,6 +4,7 @@ function stt() {
 
     // add tsek and shey after ངོ
     let modifiedValue = inputValue.replace(/ངོ$/, 'ངོ་། །');
+    modifiedValue = modifiedValue.replace(/ $/, '');
     modifiedValue = modifiedValue.replace(/ནོ$/, 'ནོ། །');
     modifiedValue = modifiedValue.replace(/དོ$/, 'དོ། །');
     modifiedValue = modifiedValue.replace(/འོ$/, 'འོ། །');
@@ -13,7 +14,6 @@ function stt() {
     modifiedValue = /(?:།|་|ག|ཤ)$/.test(modifiedValue)
         ? modifiedValue
         : modifiedValue + '།';
-    modifiedValue = modifiedValue.replace(/ $/, '');
     modifiedValue = modifiedValue.replace(/ང།/g, 'ང་།');
     // add spaces after shay unless there are two shay together
     modifiedValue = modifiedValue.replace(/(?<!།)།(?!།)/g, '། ');
@@ -28,14 +28,28 @@ function stt() {
     // remove extraspaces
     modifiedValue = modifiedValue.replace(/ +/g, ' ');
 
-    modifiedValue = modifiedValue.replace(/^[༌། ]+/, '');
-    modifiedValue = modifiedValue.replace(/^་/, '');
-    modifiedValue = modifiedValue.replace(/^[ིེོུ]+/, '');
+    modifiedValue = modifiedValue.replace(/^[༌། ]+/g, '');
+    modifiedValue = modifiedValue.replace(/^་/g, '');
+    modifiedValue = modifiedValue.replace(/^[ིེོུ]+/g, '');
 
-    modifiedValue = modifiedValue.replace(/ཕྱིར$/, 'ཕྱིར།');
-    modifiedValue = modifiedValue.replace(/རྩ་བ$/, 'རྩ་བ་ལས།');
-    modifiedValue = modifiedValue.replace(/རྩ་བ།/, 'རྩ་བ་ལས།');
+    modifiedValue = modifiedValue.replace(/ཕྱིར$/g, 'ཕྱིར།');
+    modifiedValue = modifiedValue.replace(/རྩ་བ$/g, 'རྩ་བ་ལས།');
+    modifiedValue = modifiedValue.replace(/རྩ་བ།/g, 'རྩ་བ་ལས།');
     modifiedValue = modifiedValue.replace(/། ། /g, '། །');
+    modifiedValue = modifiedValue.replace(/་ /g, '་');
+    modifiedValue = modifiedValue.replace(/ ་/g, '');
+    modifiedValue = modifiedValue.replace(/…+/g, '');
+
+    //specific to current ab
+
+    modifiedValue = modifiedValue.replace(/་ངོས་/g, '་ང་');
+    modifiedValue = modifiedValue.replace(/^ངོས་/g, 'ང་');
+    modifiedValue = modifiedValue.replace(/ ངོས་/g, 'ང་');
+    modifiedValue = modifiedValue.replace(/ང་ཡིས་/g, 'ངས་');
+    modifiedValue = modifiedValue.replace(/་ང་ཡི/g, '་ངའི');
+    modifiedValue = modifiedValue.replace(/ཁོ་མོ་/g, 'མོ་');
+
+
     modifiedValue = modifiedValue.trimEnd();
 
     var nativeInputValueSetter = Object.getOwnPropertyDescriptor(
@@ -60,6 +74,7 @@ newButton.className =
 
 newButton.addEventListener('click', () => {
     stt();
+    // document.querySelector('audio.w-full').playbackRate = 1.25;
 });
 
 const newButton2 = document.createElement('button');
@@ -78,12 +93,37 @@ newButton2.addEventListener('click', () => {
         window.HTMLTextAreaElement.prototype,
         'value'
     ).set;
-    nativeInputValueSetter.call(inputField, inputField.value + ' །');
+
+    nativeInputValueSetter.call(inputField, removeFirstWord(inputField.value));
 
     var ev2 = new Event('input', { bubbles: true });
     inputField.dispatchEvent(ev2);
 });
 
+// Add undo button
+const buttonUndo = document.createElement('button');
+buttonUndo.textContent = 'Undo'; // Set the button text (change as needed)
+buttonUndo.style.position = 'fixed';
+buttonUndo.style.bottom = '8rem';
+buttonUndo.style.right = '20vw';
+buttonUndo.style.backgroundColor = 'yellow';
+buttonUndo.className =
+    'focus:outline-none text-white bg-yellow-500 font-medium text-md p-4 sm:p-9';
+
+buttonUndo.addEventListener('click', () => {
+    let lastText = document.getElementsByClassName(
+        'py-4 cursor-pointer flex justify-between gap-1 items-center border-b-2 border-b-[#384451]'
+    )[0];
+
+    lastText.click();
+});
+
 // Append the new button to the parent element
 document.body.appendChild(newButton);
 document.body.appendChild(newButton2);
+document.body.appendChild(buttonUndo);
+
+function removeFirstWord(string) {
+    let result = string.replace(/.*?[་།]/, '');
+    return result;
+}
