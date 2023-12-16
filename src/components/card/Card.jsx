@@ -28,11 +28,7 @@ function Card({ imageData }) {
                     setModalContent(imageData);
                 }}
             >
-                <a
-                    href={links.download}
-                    target="_blank"
-                    className="hidden group-hover:block"
-                >
+                <a href={links.download} target="_blank">
                     <MdOutlineFileDownload
                         className={`absolute right-5 top-3 w-9 h-9 rounded-md bg-white/70 backdrop-blur-lg p-1`}
                     />
