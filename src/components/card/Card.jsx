@@ -14,7 +14,6 @@ function Card({ imageData }) {
         width,
         user: { profile_image, name, username },
     } = imageData;
-
     const setModalState = useSetRecoilState(modalStateRecoil);
     const setModalContent = useSetRecoilState(modalContentRecoil);
 
@@ -30,7 +29,7 @@ function Card({ imageData }) {
             >
                 <a href={links.download} target="_blank">
                     <MdOutlineFileDownload
-                        className={`absolute right-5 top-3 w-9 h-9 rounded-md bg-white/70 backdrop-blur-lg p-1`}
+                        className={`absolute right-5 top-3 w-9 h-9 rounded-md text-gray-700 bg-white/50 hover:bg-white/70 hover:text-black backdrop-blur-lg p-1`}
                     />
                 </a>
                 <LazyLoadImage

@@ -46,7 +46,7 @@ function stt() {
     modifiedValue = modifiedValue.replace(/^ངོས་/g, 'ང་');
     modifiedValue = modifiedValue.replace(/ ངོས་/g, 'ང་');
     // modifiedValue = modifiedValue.replace(/ང་ཡིས་/g, 'ངས་');
-    modifiedValue = modifiedValue.replace(/་ང་ཡི/g, '་ངའི');
+    modifiedValue = modifiedValue.replace(/་ང་ཡི་/g, '་ངའི་');
     modifiedValue = modifiedValue.replace(/དེ་ལ་/g, 'དེར་');
     modifiedValue = modifiedValue.replace(/ཁོ་མོ་/g, 'མོ་');
     modifiedValue = modifiedValue.replace(/འདི་རུ་/g, 'འདིར་');

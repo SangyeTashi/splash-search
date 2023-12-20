@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { modalStateRecoil } from './recoilState';
 import { MdArrowUpward } from 'react-icons/md';
 import { useState } from 'react';
+import Footer from './components/Footer';
 function App() {
     const modalVisible = useRecoilValue(modalStateRecoil);
     const [scrollButtonVisible, setScrollButtonVisible] = useState(false);
@@ -40,9 +41,10 @@ function App() {
                 <MdArrowUpward className="text-3xl" />
             </button>
             <Hero />
-            <main id="">
+            <main id="" className="mb-10">
                 <Gallery />
             </main>
+            <Footer />
         </div>
     );
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 function useFetch(url, params = {}) {
     const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState();
     const [error, setError] = useState(null);
     const baseUrl = 'https://api.unsplash.com/';
 
@@ -10,6 +10,7 @@ function useFetch(url, params = {}) {
         const controller = new AbortController();
 
         setLoading(true);
+
         axios
             .get(`${baseUrl}${url}`, {
                 headers: {
