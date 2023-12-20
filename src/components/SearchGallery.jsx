@@ -6,6 +6,7 @@ import Card from './card/Card';
 import close from '../assets/close.png';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { isSearchRecoil, searchQueryRecoil } from '../recoilState';
+import Footer from './Footer';
 
 function SearchGallery({ searchQuery }) {
     const [images, loading, error] = useFetch('search/photos/', {

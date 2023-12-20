@@ -1,6 +1,7 @@
 import Loading from './Loading';
 import Card from './card/Card';
 import useFetch from '../hooks/useFetch';
+import Footer from './Footer';
 import Error from './Error';
 function HomeFeed() {
     const [images, loading, error] = useFetch('photos', { per_page: 30 });
@@ -16,6 +17,7 @@ function HomeFeed() {
                     })}
                 </div>
             )}
+            {!loading && <Footer />}
         </>
     );
 }

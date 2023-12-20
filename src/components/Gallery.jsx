@@ -15,14 +15,11 @@ function Gallery() {
     const isSearch = useRecoilValue(isSearchRecoil);
     const modalVisible = useRecoilValue(modalStateRecoil);
 
-  
-
     return (
         <div>
             {modalVisible && <ModalView />}
             {/* //scroll to top button */}
 
-           
             {isSearch ? (
                 <SearchGallery searchQuery={searchQuery} />
             ) : (

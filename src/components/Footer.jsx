@@ -3,7 +3,7 @@ import { ImFacebook, ImGithub, ImLinkedin, ImTwitter } from 'react-icons/im';
 
 function Footer() {
     return (
-        <footer class="bg-gray-200">
+        <footer class="bg-gray-200 mt-10">
             <div class="container mx-auto flex justify-between items-center p-4 h-40">
                 <p class="text-sm text-gray-600">
                     Copyright 2023 @Sangye Tashi. All rights reserved.

@@ -41,10 +41,9 @@ function App() {
                 <MdArrowUpward className="text-3xl" />
             </button>
             <Hero />
-            <main id="" className="mb-10">
+            <main id="" className="">
                 <Gallery />
             </main>
-            <Footer />
         </div>
     );
 }
